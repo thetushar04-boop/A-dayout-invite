@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey Sheetal!</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #FFDEE9, #B5FFFC);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #FF69B4;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .btn:hover {
+      transform: scale(1.2) rotate(-5deg);
+      animation: bounce 0.5s;
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.1); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    #yesBtn { background-color: #ffb347; color: white; }
+    #maybeBtn { background-color: #1abc9c; color: white; }
+    #noBtn { background-color: #e74c3c; color: white; }
+
+    #secretMessage {
+      display: none;
+      font-size: 1.3em;
+      margin-top: 20px;
+      color: #6a0dad;
+      animation: fadeIn 1s forwards;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FF69B4;
+      top: 0;
+      animation: fall 3s linear infinite;
+      opacity: 0.8;
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Sheetal! 🌸</h1>
+  <p>Want to go on a small adventure this weekend? Just as friends! 😄</p>
+  <div>
+    <button class="btn" id="yesBtn">Yes, sounds fun! 🎉</button>
+    <button class="btn" id="maybeBtn">Maybe later 🤔</button>
+    <button class="btn" id="noBtn">Not now 😅</button>
+  </div>
+  <div id="secretMessage">
+    I know you don’t want anything as of now and as of now I want to spend time with you and know you more as a person and as a friend... would you like to do the same? 💛
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const maybeBtn = document.getElementById('maybeBtn');
+    const noBtn = document.getElementById('noBtn');
+    const secretMessage = document.getElementById('secretMessage');
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDuration = 2 + Math.random() * 3 + 's';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+
+    yesBtn.addEventListener('click', () => {
+      secretMessage.style.display = 'block';
+      createConfetti();
+    });
+
+    maybeBtn.addEventListener('click', () => {
+      alert('No worries! Whenever you feel like it, just let me know! 😊');
+    });
+
+    // Make the "No" button dodge the cursor
+    noBtn.addEventListener('mouseenter', () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    });
+  </script>
+</body>
+</html>
